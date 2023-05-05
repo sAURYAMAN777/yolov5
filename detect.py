@@ -1,4 +1,4 @@
-# YOLOv5 🚀 by Ultralytics, AGPL-3.0 license
+# YOLOv5 🚀 by Ultralytics, GPL-3.0 license
 """
 Run YOLOv5 detection inference on images, videos, directories, globs, YouTube, webcam, streams, etc.
 
@@ -98,7 +98,51 @@ def run(
     model = DetectMultiBackend(weights, device=device, dnn=dnn, data=data, fp16=half)
     stride, names, pt = model.stride, model.names, model.pt
     imgsz = check_img_size(imgsz, s=stride)  # check image size
-
+    
+    names = [
+        'Speed limit (20km/h)',
+        'Speed limit (30km/h)',
+        'Speed limit (50km/h)',
+        'Speed limit (60km/h)',
+        'Speed limit (70km/h)',
+        'Speed limit (80km/h)',
+        'End of speed limit (80km/h)',
+        'Speed limit (100km/h)',
+        'Speed limit (120km/h)',
+        'No passing',
+        'No passing for vechiles over 3.5 metric tons',
+        'Road Block',
+        'Priority road',
+        'Yield',
+        'Stop',
+        'No vehicles',
+        'Vechiles over 3.5 metric tons prohibited',
+        'No entry',
+        'General caution',
+        'Double curve',
+        'Bumpy Road',
+        'Slippery road',
+        'Road narrows on the right',
+        'Road Work',
+        'Traffic Signals',
+        'Pedestrians',
+        'Children crossing',
+        'Bicycles crossing',
+        'Beware of ice/snow',
+        'Wild animals crossing',
+        'End of all speed and passing limits',
+        'Turn right ahead',
+        'Turn left ahead',
+        'Ahead only',
+        'Go straight or right',
+        'Go straight or left',
+        'Keep right',
+        'Keep left',
+        'Roundabout mandatory',
+        'End of no passing',
+        'End of no passing by vechiles over 3.5 metric tons'
+    ]  # model.module.names if hasattr(model, 'module') else model.names
+    
     # Dataloader
     bs = 1  # batch_size
     if webcam:
@@ -256,6 +300,6 @@ def main(opt):
     run(**vars(opt))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     opt = parse_opt()
     main(opt)
